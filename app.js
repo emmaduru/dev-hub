@@ -31,7 +31,7 @@ db.on("connected", () => {
     app.set("view engine", "ejs");
 
     app.get("/", (req, res) => {
-        return res.render("home")
+        return res.render("home", {title: null})
     })
 
     // 404 error handler
@@ -41,9 +41,9 @@ db.on("connected", () => {
 
     // Catch-all error handler
     app.use((err, req, res, next) => {
-        if (!err.status) {
-            logger.error(err);
-            res.render("errors/500", {title: "Internal Server Error."});
+        if (err && !err.status) {
+            logger.error(err.message);
+            return res.render("errors/500", {title: "Internal Server Error."});
         }
     })
 
