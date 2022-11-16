@@ -1,0 +1,9 @@
+{
+    "prettier.trailingComma": "all",
+    "prettier.useTabs": true,
+    "prettier.singleAttributePerLine": true,
+    "prettier.quoteProps": "consistent",
+    "prettier.proseWrap": "always",
+    "prettier.htmlWhitespaceSensitivity": "strict",
+    "prettier.endOfLine": "auto"
+}
