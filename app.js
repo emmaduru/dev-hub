@@ -30,6 +30,23 @@ db.on("connected", () => {
     app.use(express.json());
     app.set("view engine", "ejs");
 
+    app.get("/", (req, res) => {
+        return res.render("home")
+    })
+
+    // 404 error handler
+    app.use((req, res, next) => {
+        return res.render("errors/404", {title: "Not Found."});
+    })
+
+    // Catch-all error handler
+    app.use((err, req, res, next) => {
+        if (!err.status) {
+            logger.error(err);
+            res.render("errors/500", {title: "Internal Server Error."});
+        }
+    })
+
     const port = process.env.PORT || 5000;
 
     app.listen(port, (err) => {
